@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: Restaurante
+  datasource:
+    url: jdbc:postgresql://localhost:5432/restauranteDB
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: UTC
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        id:
+          uuid_representation: BINARY  # Importante para UUID
+    open-in-view: false  # Melhor para performance
+
+  # Configurações específicas para o ambiente de desenvolvimento
+  logging:
+    level:
+      org:
+        hibernate:
+          SQL: DEBUG
+          type:
+            descriptor:
+              sql:
+                BasicBinder: TRACE
+      com:
+        projetoRestaurante: DEBUG
