@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "customers")
 @PrimaryKeyJoinColumn(name = "user_id")
@@ -11,12 +13,12 @@ import lombok.Setter;
 @Setter
 public class Customer extends User {
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-    private list<Adress> adresslist;
+    private List<Address> adresslist;
 
     @OneToMany(mappedBy = "customer")
-    private list<Order> orders;
+    private List<Order> orders;
 
     @OneToMany(mappedBy = "customer")
-    private list<Review> reviews;
+    private List<Review> reviews;
 
 }

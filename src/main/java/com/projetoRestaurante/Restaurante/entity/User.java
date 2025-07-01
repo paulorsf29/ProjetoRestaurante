@@ -1,6 +1,7 @@
 package com.projetoRestaurante.Restaurante.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -25,6 +26,7 @@ public class User {
     @Column(name = "nome", length = 255, nullable = false)
     private String nome;
 
+    @Email
     @Column(name = "email", length = 255, nullable = false, unique = true)
     private String email;
 
