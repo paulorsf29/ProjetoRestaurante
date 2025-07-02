@@ -19,4 +19,8 @@ public interface OrderRepository extends JpaRepository<Order, UUID> {
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate
     );
+    boolean existsByCustomerAndMenuItem(
+            @Param("customerId") UUID customerId,
+            @Param("menuItemId") UUID menuItemId
+    );
 }
