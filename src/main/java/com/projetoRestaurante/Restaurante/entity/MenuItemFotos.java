@@ -25,9 +25,15 @@ public class MenuItemFotos {
     private String imageUrl;
 
     @Column(name = "featured", nullable = false)
-    private boolean isFeatured = false;
+    private boolean isFeatured;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "menu_item_id", nullable = false)
     private MenuItem menuItem;
+
+    public MenuItemFotos(String imageUrl, boolean isFeatured, MenuItem menuItem) {
+        this.imageUrl = imageUrl;
+        this.isFeatured = isFeatured;
+        this.menuItem = menuItem;
+    }
 }

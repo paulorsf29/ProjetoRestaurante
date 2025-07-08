@@ -17,7 +17,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public User usuarioRegistrado(User user){
-        if (userRepository.existByemail(user.getEmail())){
+        if (userRepository.existsByEmail(user.getEmail())){
             throw new RuntimeException("Email Ja Cadastrado");
         }
         user.setSenha(passwordEncoder.encode(user.getSenha()));
@@ -26,11 +26,11 @@ public class UserService {
     public List<User> listaUsuarioPorCategoria(User.Role role){
         return userRepository.findByRole(role);
     }
-    Optional<User> buscarUserPorId(UUID id){
+    public Optional<User> buscarUserPorId(UUID id){
         return userRepository.findById(id);
     }
     public boolean verificarEmailExistente(String email){
-        return userRepository.existByemail(email);
+        return userRepository.existsByEmail(email);
     }
 
 }

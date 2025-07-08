@@ -16,12 +16,12 @@ public class DeliveryService {
     private final AddressRepository addressRepository;
 
     public boolean deliveryDisponivel(double latitude, double longitude){
-        return areaDeliveryRepository.findDeliveryAreaByCordenates(latitude,longitude).isPresent();
+        return areaDeliveryRepository.findDeliveryAreaByCoordenates(latitude,longitude).isPresent();
     }
 
     public Integer calculoCustoDelivery(UUID addressId){
         Address address = addressRepository.findById(addressId).orElseThrow();
-        Area_delivery areaDelivery = areaDeliveryRepository.findDeliveryAreaByCordenates(
+        Area_delivery areaDelivery = areaDeliveryRepository.findDeliveryAreaByCoordenates(
                 address.getLatitude(),
                 address.getLongitude()
         ).orElseThrow();

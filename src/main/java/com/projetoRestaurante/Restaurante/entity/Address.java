@@ -1,6 +1,8 @@
 package com.projetoRestaurante.Restaurante.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,24 +30,34 @@ public class Address {
     private User customer;
 
     @Column(name = "rua", nullable = false, length = 200)
+    @NotBlank
+    @NotNull
     private String rua;
 
     @Column(name = "numero", nullable = false, length = 20)
+    @NotBlank
+    @NotNull
     private String numero;
 
     @Column(name = "bairro", nullable = false, length = 200)
+    @NotBlank
+    @NotNull
     private String bairro;
 
     @Column(name = "complemento", nullable = false, length = 254)
     private String complemento;
 
     @Column(name = "cidade", nullable = false, length = 20)
+    @NotBlank
     private String cidade;
 
     @Column(name = "estado", nullable = false, length = 20)
+    @NotBlank
     private String estado;
 
     @Column(name = "zipcode", nullable = false, length = 9)
+    @NotBlank
+    @NotNull
     private String zipcode;
 
     @Column(name = "latitude", nullable = false)

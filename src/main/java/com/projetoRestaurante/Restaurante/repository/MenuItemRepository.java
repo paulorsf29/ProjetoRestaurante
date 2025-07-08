@@ -12,8 +12,10 @@ import java.util.UUID;
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, UUID> {
     List<MenuItem> findByCategoryId(UUID categoryId);
-    List<MenuItem> findByAvaibleTrue();
+    List<MenuItem> findByCategoryIdAndDisponibilidadeTrue(UUID categoryId);
+    List<MenuItem> findByDisponibilidadeTrue();
+    List<MenuItem> findByDisponibilidadeTrueOrderByPrecoAsc();
 
-    @Query("SELECT mi FROM MenuItem mi WHERE LOWER(mi.name) LIKE LOWER(CONCAT('%', :query, '%'))")
+    @Query("SELECT mi FROM MenuItem mi WHERE mi.disponibilidade = true AND LOWER(mi.nome) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<MenuItem> acharPeloNome(@Param("query") String query);
 }

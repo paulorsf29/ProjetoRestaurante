@@ -12,14 +12,21 @@ import java.util.UUID;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, UUID> {
-    List<Order> findByClienteId(String clientId);
-    List<Order> findByStatus(Order.OrderStatus status);
-    @Query("SELECT o FROM Order o WHERE o.createdAt BETWEEN :startDate AND :endDate")
+    List<Order> findByCustomerId(UUID customerId);
+    List<Order> findTop5ByCustomerIdOrderByCreated_AtDesc(UUID customerId);
+    List<Order> findByOrderStatus(Order.OrderStatus orderStatus);
+    @Query("SELECT o FROM Order o WHERE o.created_At BETWEEN :startDate AND :endDate")
     List<Order> findOrdersBetweenDates(
             @Param("startDate") LocalDateTime startDate,
             @Param("endDate") LocalDateTime endDate
     );
-    boolean existsByCustomerAndMenuItem(
+    @Query("SELECT o FROM Order o WHERE o.orderType = 'DELIVERY' AND o.deliveryAddress.latitude BETWEEN :minLat AND :maxLat AND o.deliveryAddress.longitude BETWEEN :minLng AND :maxLng")
+    List<Order> findDeliveryOrdersInArea(@Param("minLat") double minLat, @Param("maxLat") double maxLat, @Param("minLng") double minLng, @Param("maxLng") double maxLng);
+    @Query("SELECT CASE WHEN COUNT(o) > 0 THEN true ELSE false END " +
+            "FROM Order o JOIN o.items oi " +
+            "WHERE o.customer.id = :customerId " +
+            "AND oi.menuItem.id = :menuItemId")
+    boolean existsByCustomerIdAndMenuItemId(
             @Param("customerId") UUID customerId,
             @Param("menuItemId") UUID menuItemId
     );

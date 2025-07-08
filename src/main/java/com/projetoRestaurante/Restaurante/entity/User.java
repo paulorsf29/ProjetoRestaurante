@@ -1,7 +1,7 @@
 package com.projetoRestaurante.Restaurante.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,16 +24,24 @@ public class User {
     private UUID id;
 
     @Column(name = "nome", length = 255, nullable = false)
+    @NotBlank
+    @NotNull
     private String nome;
 
     @Email
     @Column(name = "email", length = 255, nullable = false, unique = true)
+    @NotBlank
+    @NotNull
     private String email;
 
     @Column(name = "senha", length = 255, nullable = false)
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d).{8,}$")
+    @NotBlank
+    @Size(min = 6)
     private String senha;
 
     @Column(name = "telefone", length = 15, nullable = false, unique = true)
+    @NotNull
     private String telefone;
 
     @Enumerated(EnumType.STRING)

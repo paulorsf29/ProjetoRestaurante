@@ -15,7 +15,7 @@ public class ReviewService {
     private final OrderRepository orderRepository;
 
     public Review createReview(Review review, UUID customerId,UUID menuItemId){
-        boolean fezPedido = orderRepository.existsByCustomerAndMenuItem(customerId,menuItemId);
+        boolean fezPedido = orderRepository.existsByCustomerIdAndMenuItemId(customerId,menuItemId);
         if (!fezPedido){
             throw new RuntimeException("cliente não pode avaliar item que não foi comprado");
         }

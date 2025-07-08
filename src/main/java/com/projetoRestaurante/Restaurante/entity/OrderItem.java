@@ -1,6 +1,7 @@
 package com.projetoRestaurante.Restaurante.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 import java.util.UUID;
@@ -28,6 +29,7 @@ public class OrderItem {
     private MenuItem menuItem;
 
     @Column(name = "quantidade", nullable = false)
+    @Min(1)
     private Integer quantidade;
 
     @Column(name = "preco_unitario", nullable = false)

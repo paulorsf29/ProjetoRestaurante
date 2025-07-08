@@ -5,8 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -32,7 +32,10 @@ public class Category {
     private String imagenUrl;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private list<MenuItem> menuItems;
+    private List<MenuItem> menuItems;
+
+    @Column(name = "ativo", nullable = false)
+    private boolean ativo;
 
     @CreationTimestamp
     @Column(name = "criado_em",updatable = false)

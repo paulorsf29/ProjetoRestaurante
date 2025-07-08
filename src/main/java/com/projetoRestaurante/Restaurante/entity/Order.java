@@ -58,7 +58,7 @@ public class Order {
     private LocalDateTime updated_At;
 
     public enum OrderStatus {
-        ESPERA, PREPARANDO, PREPARADO, SAIU_DELIVERY, ENTREGUE, CANCELADO
+        PENDENTE, EM_PREPARO, PRONTO_PARA_ENTREGA, SAIU_PARA_ENTREGA, ENTREGUE, CANCELADO
     }
 
     public enum OrderType {

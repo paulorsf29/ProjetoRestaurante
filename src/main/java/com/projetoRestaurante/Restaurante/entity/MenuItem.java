@@ -1,6 +1,7 @@
 package com.projetoRestaurante.Restaurante.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,8 +45,9 @@ public class MenuItem {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
-    @OneToMany(mappedBy = "menuitem", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<MenuItemFotos> fotos;
+    @OneToMany(mappedBy = "menuItem", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Size(max = 5)
+    private List<MenuItemFotos> fotos = new ArrayList<>();
 
     @CreationTimestamp
     @Column(updatable = false)

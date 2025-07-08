@@ -1,6 +1,7 @@
 package com.projetoRestaurante.Restaurante.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import lombok.*;
 
 import java.util.UUID;
@@ -28,6 +29,7 @@ public class Area_delivery {
     private double longitudeCentral;
 
     @Column(name = "raio", nullable = false)
+    @Max(10000)
     private double raio;
 
     @Column(name = "recebimento_delivery", nullable = false)
