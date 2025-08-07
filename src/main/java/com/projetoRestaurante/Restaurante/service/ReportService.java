@@ -19,6 +19,9 @@ public class ReportService {
     private final OrderRepository orderRepository;
 
     public ReportDTO gerarRelatorioDeVendas(LocalDateTime inicio, LocalDateTime fim){
+        if (inicio.isAfter(fim)){
+            throw new IllegalArgumentException("data de inicio deve ser anterior a data final");
+        }
         List<Order> pedidos = orderRepository.findOrdersBetweenDates(inicio.toLocalDate().atStartOfDay(), fim.toLocalDate().atTime(23,59,59));
         return new ReportDTO(pedidos);
     }

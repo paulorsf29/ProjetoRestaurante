@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -15,6 +16,9 @@ public interface MenuItemRepository extends JpaRepository<MenuItem, UUID> {
     List<MenuItem> findByCategoryIdAndDisponibilidadeTrue(UUID categoryId);
     List<MenuItem> findByDisponibilidadeTrue();
     List<MenuItem> findByDisponibilidadeTrueOrderByPrecoAsc();
+
+
+    Optional<MenuItem> findById(UUID uuid);
 
     @Query("SELECT mi FROM MenuItem mi WHERE mi.disponibilidade = true AND LOWER(mi.nome) LIKE LOWER(CONCAT('%', :query, '%'))")
     List<MenuItem> acharPeloNome(@Param("query") String query);

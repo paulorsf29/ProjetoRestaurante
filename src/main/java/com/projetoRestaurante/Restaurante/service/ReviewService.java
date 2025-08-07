@@ -1,5 +1,6 @@
 package com.projetoRestaurante.Restaurante.service;
 
+import com.projetoRestaurante.Restaurante.entity.Order;
 import com.projetoRestaurante.Restaurante.entity.Review;
 import com.projetoRestaurante.Restaurante.repository.OrderRepository;
 import com.projetoRestaurante.Restaurante.repository.ReviewRepository;
@@ -15,7 +16,8 @@ public class ReviewService {
     private final OrderRepository orderRepository;
 
     public Review createReview(Review review, UUID customerId,UUID menuItemId){
-        boolean fezPedido = orderRepository.existsByCustomerIdAndMenuItemId(customerId,menuItemId);
+
+        boolean fezPedido = orderRepository.existsByCustomerIdAndItems_MenuItemIdAndOrderStatus(customerId,menuItemId, Order.OrderStatus.ENTREGUE);
         if (!fezPedido){
             throw new RuntimeException("cliente não pode avaliar item que não foi comprado");
         }

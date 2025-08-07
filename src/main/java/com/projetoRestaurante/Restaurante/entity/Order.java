@@ -51,11 +51,11 @@ public class Order {
     private String instrucoesAdicionais;
 
     @CreationTimestamp
-    @Column(updatable = false)
-    private LocalDateTime created_At;
+    @Column(name = "created_at",updatable = false)
+    private LocalDateTime createdAt;
 
     @UpdateTimestamp
-    private LocalDateTime updated_At;
+    private LocalDateTime updatedAt;
 
     public enum OrderStatus {
         PENDENTE, EM_PREPARO, PRONTO_PARA_ENTREGA, SAIU_PARA_ENTREGA, ENTREGUE, CANCELADO

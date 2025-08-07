@@ -2,7 +2,7 @@ spring:
   application:
     name: Restaurante
   datasource:
-    url: jdbc:postgresql://localhost:5432/restauranteDB
+    url: jdbc:postgresql://localhost:5432/restauranteFB_DB
     username: postgres
     password: root
     driver-class-name: org.postgresql.Driver
@@ -17,10 +17,9 @@ spring:
           time_zone: UTC
         dialect: org.hibernate.dialect.PostgreSQLDialect
         id:
-          uuid_representation: BINARY  # Importante para UUID
-    open-in-view: false  # Melhor para performance
+          uuid_representation: BINARY
+    open-in-view: false
 
-  # Configurações específicas para o ambiente de desenvolvimento
   logging:
     level:
       org:
